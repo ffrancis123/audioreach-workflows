@@ -11,6 +11,30 @@ on:
         type: string
         default: 'ci/build_options.txt'
 
+      event_name:
+        required: false
+        type: string
+        description: Optional event name to use for building
+        default: ${{ github.event_name }}
+
+      pr_ref:
+        required: false
+        type: string
+        description: Optional pull request reference to use for building
+        default: ${{ github.event.pull_request.head.ref }}
+
+      pr_repo:
+        required: false
+        type: string
+        description: Optional pull request repository to use for building
+        default: ${{ github.event.pull_request.head.repo.full_name }}
+
+      base_ref:
+        required: false
+        type: string
+        description: Optional base reference to use for building
+        default: ${{ github.ref_name }}
+
     outputs:
       build_args:
         description: The build arguments
@@ -22,11 +46,14 @@ jobs:
     outputs:
       build_args: ${{ steps.loading.outputs.build_args }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Sync Codebase
+        id: sync
+        uses: Audioreach/audioreach-workflows/.github/actions/sync@master
         with:
-          fetch-depth: 0
-          ref: ${{ github.ref }}
+          event_name: ${{ inputs.event_name }}
+          pr_ref: ${{ inputs.pr_ref }}
+          pr_repo: ${{ inputs.pr_repo }}
+          base_ref: ${{ inputs.base_ref }}
 
       - name: Load Parameters
         id: loading
