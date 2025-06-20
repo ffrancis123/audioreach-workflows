@@ -1,0 +1,33 @@
+---
+name: pre_merge_build
+run-name: Pre Merge Build ${{ github.event.pull_request.number }}
+
+on:
+  workflow_dispatch:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+    branches:
+      - master
+    paths-ignore:
+      - '.github/**'
+
+jobs:
+  load_parameters:
+    uses: Audioreach/audioreach-workflows/.github/workflows/loading.yml@master
+
+  build:
+    needs: load_parameters
+    uses: Audioreach/audioreach-workflows/.github/workflows/build.yml@master
+    secrets: inherit
+    with:
+      build_args: ${{ needs.load_parameters.outputs.build_args }}
+
+  process_image:
+    needs: [ load_parameters, build ]
+    uses: Audioreach/audioreach-workflows/.github/workflows/process_image.yml@master
+    secrets: inherit
+
+  trigger_lava:
+    needs: [ load_parameters, build, process_image ]
+    uses: Audioreach/audioreach-workflows/.github/workflows/test.yml@master
+    secrets: inherit
