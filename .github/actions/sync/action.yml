@@ -20,7 +20,7 @@ runs:
   using: 'composite'
   steps:
     - name: Checkout Code (pull_request_target)
-      if: ${{ (inputs.event_name == 'pull_request_target' || inputs.event_name == 'workflow_call') && inputs.base_ref != '' && inputs.pr_repo != '' }}
+      if: ${{ (inputs.event_name == 'pull_request_target' || inputs.event_name == 'workflow_call') && inputs.pr_ref != '' && inputs.pr_repo != '' }}
       uses: actions/checkout@v4   # actions/checkout@v4
       with:
         fetch-depth: 0  # Fetch all history for all branches and tags
@@ -46,4 +46,4 @@ runs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
-        ref: ${{ github.base_ref }}
+        ref: ${{ inputs.base_ref }}
