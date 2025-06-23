@@ -11,6 +11,12 @@ on:
         description: Optional event name to use for building
         default: ${{ github.event_name }}
 
+      files_to_copy:
+        required: false
+        type: string
+        description: Optional files to copy for building
+        default: 'ci/files_to_copy.sh'
+
       pr_ref:
         required: false
         type: string
@@ -100,6 +106,7 @@ jobs:
             -v $PWD:/workspace \
             -w /workspace \
             -e "IMAGE_NAME=${{ env.IMAGE_NAME }}" \
+            -e "FILES_TO_COPY=${{ inputs.files_to_copy }}" \
             --privileged \
             ${{ steps.get-docker-image.outputs.image_name }} \
             bash -c "
@@ -110,8 +117,7 @@ jobs:
               echo "Image mounted successfully"
 
               # Copy the arg build files to the mounted image
-              cd ..
-              cp -R build/usr/lib* /tmp/rootfs/usr/lib/
+              source ./${FILES_TO_COPY}
               echo "Build files copied successfully"
               sync
               # Unmount the image

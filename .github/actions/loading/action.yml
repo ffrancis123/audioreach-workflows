@@ -22,7 +22,20 @@ runs:
       uses: actions/github-script@v7
       with:
         script: |
-          const fs = require('fs')
-          const options = fs.readFileSync('${{ github.workspace }}/${{ inputs.build_options_file }}').toString().trim().split('\n').join(' ')
-          console.log(options)
-          core.setOutput('build_args', options)
+          const fs = require('fs');
+          const path = `${{ github.workspace }}/${{ inputs.build_options_file }}`;
+
+          let options = '';
+
+          try {
+            if (fs.existsSync(path)) {
+              options = fs.readFileSync(path).toString().trim().split('\n').join(' ');
+            } else {
+              console.log(`⚠️ File not found: ${path}. Proceeding with empty options.`);
+            }
+          } catch (err) {
+            console.log(`❌ Error reading file: ${err}. Using empty options.`);
+          }
+
+          console.log(`Parsed options: "${options}"`);
+          core.setOutput('build_args', options);
