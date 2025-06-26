@@ -1,6 +1,6 @@
 # audioreach-workflows
 
-This repository contains reusable CI/CD workflow templates for the Audioreach organisation. It is designed to serve as a central source for best-practice GitHub Actions workflows, which can be referenced and reused across multiple Audioreach repositories.
+This repository contains reusable CI/CD workflow templates for the AudioReach organisation. It is designed to serve as a central source for best-practice GitHub Actions workflows, which can be referenced and reused across multiple AudioReach repositories.
 
 ## Usage
 
