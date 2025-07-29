@@ -22,6 +22,10 @@ inputs:
     description: Mode of operation (upload/download)
     required: true
     default: upload
+  upload_location:
+    description: Upload location
+    required: false
+    default: ${{ github.repository_owner }}/${{ github.event.repository.name }}/${{ github.run_id }}-${{ github.run_attempt }}/
 
 runs:
   using: "composite"
@@ -31,7 +35,7 @@ runs:
       id: sync_data
       shell: bash
       env:
-        UPLOAD_LOCATION: ${{ github.repository_owner }}/${{ github.event.repository.name }}/${{ github.workflow }}/
+        UPLOAD_LOCATION: ${{ inputs.upload_location }}
       run: |
         case "${{ inputs.mode }}" in
           upload)
