@@ -69,7 +69,7 @@ jobs:
         if: ${{ steps.listjobs.outputs.target != '' }}
         id: submit_job
         timeout-minutes: 20
-        uses: foundriesio/lava-action@v6
+        uses: foundriesio/lava-action@v8
         with:
           lava_token: ${{ secrets.LAVATOKEN }}
           lava_url: 'lava.infra.foundries.io'
