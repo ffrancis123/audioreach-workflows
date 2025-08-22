@@ -18,7 +18,7 @@ jobs:
 
       - name: Download presigned URL
         id: download_url
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: presigned_url.txt
           path: ${{ github.workspace }}
