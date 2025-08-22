@@ -75,15 +75,16 @@ Loads required parameters for subsequent jobs.
 
 ---
 
-#### 5. `qli-checkers.yml`
-Runs code quality and compliance checkers.
+#### 5. `qcom-preflight-checks.yml`
+Runs code quality and compliance checkers. For more info check [qcom-actions](https://github.com/qualcomm/qcom-actions)
 
 **Inputs:**
-No required or optional inputs for the workflow itself, but the called job (`multi-checker.yml`) accepts:
+No required or optional inputs for the workflow itself, but the called job [qcom-reusable-workflows](https://github.com/qualcomm/qcom-reusable-workflows) accepts:
 - `repolinter` (default: true)
 - `semgrep` (default: true)
 - `copyright-license-detector` (default: true)
 - `pr-check-emails` (default: true)
+- `dependency-review` (default: true)
 
 **Secrets:**
 - `SEMGREP_APP_TOKEN` (required for Semgrep checks)

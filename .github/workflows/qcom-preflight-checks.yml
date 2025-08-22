@@ -1,0 +1,42 @@
+name: Qualcomm Preflight Checks Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      repolinter:
+        description: "Run Repolinter"
+        type: boolean
+        default: true
+      semgrep:
+        description: "Run Semgrep"
+        type: boolean
+        default: true
+      copyright-license-detector:
+        description: "Run Copyright-License-Detector"
+        type: boolean
+        default: true
+      pr-check-emails:
+        description: "Run PR Check Emails"
+        type: boolean
+        default: true
+      dependency-review:
+        description: "Run Dependency Review"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  qcom-preflight-checks:
+    uses: qualcomm/qcom-reusable-workflows/.github/workflows/qcom-preflight-checks-reusable-workflow.yml@v1.1.4
+    with:
+      # ✅ Preflight Checkers
+      repolinter: ${{ inputs.repolinter }}
+      semgrep: ${{ inputs.semgrep }}
+      copyright-license-detector: ${{ inputs.copyright-license-detector }}
+      pr-check-emails: ${{ inputs.pr-check-emails }}
+      dependency-review: ${{ inputs.dependency-review }}
+    secrets:
+      SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
