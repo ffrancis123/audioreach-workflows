@@ -24,7 +24,7 @@ Reusable workflow for build instructions.
 ```yaml
 jobs:
   build:
-    uses: Audioreach/audioreach-workflows/.github/workflows/build.yml@main
+    uses: AudioReach/audioreach-workflows/.github/workflows/build.yml@main
     with:
       build_args: "--target release"
 ```
@@ -41,7 +41,7 @@ Triggers LAVA tests on the build artifact.
 ```yaml
 jobs:
   test:
-    uses: Audioreach/audioreach-workflows/.github/workflows/test.yml@main
+    uses: AudioReach/audioreach-workflows/.github/workflows/test.yml@main
 ```
 
 ---
@@ -59,7 +59,7 @@ Processes the build image for a given build URL.
 ```yaml
 jobs:
   process_image:
-    uses: Audioreach/audioreach-workflows/.github/workflows/process_image.yml@main
+    uses: AudioReach/audioreach-workflows/.github/workflows/process_image.yml@main
 ```
 
 ---
@@ -78,7 +78,7 @@ Loads required parameters for subsequent jobs.
 ```yaml
 jobs:
   loading:
-    uses: Audioreach/audioreach-workflows/.github/workflows/loading.yml@main
+    uses: AudioReach/audioreach-workflows/.github/workflows/loading.yml@main
 ```
 
 ---
@@ -101,7 +101,7 @@ Runs code quality and compliance checkers using Qualcomm's multi-checker action.
 ```yaml
 jobs:
   checker:
-    uses: Audioreach/audioreach-workflows/.github/workflows/qli-checkers.yml@main
+    uses: AudioReach/audioreach-workflows/.github/workflows/qli-checkers.yml@main
 ```
 
 # Custom Actions Documentation
@@ -184,7 +184,7 @@ Each action is referenced in the workflows using the `uses:` keyword, e.g.:
 
 ```yaml
 - name: Build docker Image
-  uses: Audioreach/audioreach-workflows/.github/actions/build_docker_image@main
+  uses: AudioReach/audioreach-workflows/.github/actions/build_docker_image@main
 ```
 
 Refer to each action's `action.yml` or this documentation for detailed input/output information.

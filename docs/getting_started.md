@@ -116,7 +116,7 @@ They can assist with provisioning the token securely and ensuring your workflows
 
 ### 🚀 Defining and Reusing Workflows with `audioreach-workflows`
 
-With the setup complete—runners configured and secrets in place—you’re now ready to define your own GitHub Actions workflows or reuse existing ones from the centralized [`audioreach-workflows`](https://github.com/Audioreach/audioreach-workflows) repository.
+With the setup complete—runners configured and secrets in place—you’re now ready to define your own GitHub Actions workflows or reuse existing ones from the centralized [`audioreach-workflows`](https://github.com/AudioReach/audioreach-workflows) repository.
 
 #### 📚 Where to Start
 - **Workflow Documentation**: Refer to the documentation in the [`audioreach-workflows`](workflows_usage.md) repository to understand the available workflows, their inputs, and usage patterns.

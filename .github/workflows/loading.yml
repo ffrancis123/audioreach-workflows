@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: Sync Codebase
         id: sync
-        uses: Audioreach/audioreach-workflows/.github/actions/sync@master
+        uses: AudioReach/audioreach-workflows/.github/actions/sync@master
         with:
           event_name: ${{ inputs.event_name }}
           pr_ref: ${{ inputs.pr_ref }}
@@ -57,6 +57,6 @@ jobs:
 
       - name: Load Parameters
         id: loading
-        uses: Audioreach/audioreach-workflows/.github/actions/loading@master
+        uses: AudioReach/audioreach-workflows/.github/actions/loading@master
         with:
           build_options_file: ${{ inputs.build_options_file }}

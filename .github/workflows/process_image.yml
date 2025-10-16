@@ -47,11 +47,11 @@ jobs:
     steps:
       - name: Build docker Image
         id: get-docker-image
-        uses: Audioreach/audioreach-workflows/.github/actions/build_docker_image@master
+        uses: AudioReach/audioreach-workflows/.github/actions/build_docker_image@master
 
       - name: Sync Codebase
         id: sync
-        uses: Audioreach/audioreach-workflows/.github/actions/sync@master
+        uses: AudioReach/audioreach-workflows/.github/actions/sync@master
         with:
           event_name: ${{ inputs.event_name }}
           pr_ref: ${{ inputs.pr_ref }}
@@ -79,12 +79,12 @@ jobs:
 
       - name: Pull meta-ar pre compiled image
         id: pull_meta_ar
-        uses: Audioreach/audioreach-workflows/.github/actions/aws-s3-exchanger@master
+        uses: AudioReach/audioreach-workflows/.github/actions/aws-s3-exchanger@master
         with:
           s3_bucket: qli-prd-audior-gh-artifacts
           mode: download
           download_filename: ${{ env.IMAGE_NAME }}.tar.gz
-          location: Audioreach/meta-ar/post_merge_build
+          location: AudioReach/meta-ar/post_merge_build
 
       - name: Extract image and mount
         id: extract_image
@@ -139,7 +139,7 @@ jobs:
 
       - name: Upload tar image
         id: upload_tar_image
-        uses: Audioreach/audioreach-workflows/.github/actions/aws-s3-exchanger@master
+        uses: AudioReach/audioreach-workflows/.github/actions/aws-s3-exchanger@master
         with:
           s3_bucket: qli-prd-audior-gh-artifacts
           local_file: ${{ github.workspace }}/${{ env.IMAGE_NAME }}.tar.gz

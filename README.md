@@ -13,7 +13,7 @@ on:
     branches: [ main ]
 jobs:
   build:
-    uses: Audioreach/audioreach-workflows/.github/workflows/build.yml@master
+    uses: AudioReach/audioreach-workflows/.github/workflows/build.yml@master
     with:
       # Set workflow inputs here if required
     secrets:
