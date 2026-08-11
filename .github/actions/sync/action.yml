@@ -21,29 +21,33 @@ runs:
   steps:
     - name: Checkout Code (pull_request_target)
       if: ${{ (inputs.event_name == 'pull_request' || inputs.event_name == 'workflow_call') && inputs.pr_ref != '' && inputs.pr_repo != '' }}
-      uses: actions/checkout@v4   # actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262   # actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       with:
         fetch-depth: 0  # Fetch all history for all branches and tags
         ref: ${{ inputs.pr_ref }}
         repository: ${{ inputs.pr_repo }}
+        persist-credentials: false
 
     - name: Checkout master (push)
       if: ${{ (inputs.event_name == 'push' || inputs.event_name == 'workflow_call') && inputs.base_ref != '' }}
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       with:
         fetch-depth: 0
         ref: ${{ inputs.base_ref }}
+        persist-credentials: false
 
     - name: Checkout current repo and ref (Fallback)
       if: ${{ (inputs.event_name == 'push' || inputs.event_name == 'workflow_call') && (inputs.base_ref == '' || inputs.pr_repo == '') }}
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       with:
         fetch-depth: 0
         ref: ${{ github.ref }}
+        persist-credentials: false
 
     - name: Checkout for workflow_dispatch
       if: ${{ inputs.event_name == 'workflow_dispatch' }}
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       with:
         fetch-depth: 0
         ref: ${{ inputs.base_ref }}
+        persist-credentials: false

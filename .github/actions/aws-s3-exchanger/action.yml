@@ -89,7 +89,7 @@ runs:
     - name: Upload Pre-signed URL
       id: upload_presigned_url
       if: ${{ inputs.mode == 'upload' }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
       with:
         name: presigned_url_${{ env.IMAGE_NAME }}.txt
         path: ${{ github.workspace }}/presigned_urls/presigned_url_${{ env.IMAGE_NAME }}.txt

@@ -78,14 +78,15 @@ runs:
   using: 'composite'
   steps:
     - name: Checkout lava-test-plans
-      uses: actions/checkout@v5
+      uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
       with:
         repository: qualcomm-linux-stg/lava-test-plans
         path: lava-test-plans
         ref: sample
+        persist-credentials: false
 
     - name: Setup Python
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
       with:
         python-version: '3.11'
 
@@ -237,7 +238,7 @@ runs:
         fi
 
     - name: Upload test jobs artifact
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
       with:
         name: ${{ steps.generate-jobs.outputs.artifact_name }}
         path: ${{ steps.generate-jobs.outputs.jobs_path }}/**
@@ -245,7 +246,7 @@ runs:
     - name: Submit first job to LAVA
       id: submit-job
       if: ${{ steps.generate-jobs.outputs.first_job != '' }}
-      uses: foundriesio/lava-action@v9
+      uses: foundriesio/lava-action@fe00b480d3b0f276cb4023052c7f6bc67e805953
       with:
         lava_token: ${{ inputs.lava_token }}
         lava_url: ${{ inputs.lava_url }}

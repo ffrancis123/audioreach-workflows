@@ -73,14 +73,15 @@ jobs:
           exit 0
 
       - name: Clone repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           fetch-depth: 0
           repository: AudioReach/meta-audioreach
+          persist-credentials: false
 
       - name: Get build URL
         id: get_build_url
-        uses: actions/github-script@v8
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd
         env:
           BUILD_URLS_JSON: ${{ inputs.build_urls }}
           IMAGE_NAME: ${{ matrix.build_matrix.image_name }}
@@ -141,9 +142,10 @@ jobs:
       summary_id: ${{ steps.generate-summary.outputs.artifact_id }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Generate Summary
         id: generate-summary
@@ -154,7 +156,7 @@ jobs:
           summary_file_name: test_job_summary
       
       - name: Download Summaries
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53
         with:
           pattern: test_job_summary*
           merge-multiple: true
