@@ -67,6 +67,12 @@ on:
         description: Optional base reference to use for building
         default: ${{ github.ref_name }}
 
+      meta_audioreach_branch:
+        required: false
+        type: string
+        description: meta-audioreach branch whose SDK/images to consume (published under post_merge_build/<branch>/)
+        default: master
+
       sdk_s3_base_location:
         required: false
         type: string
@@ -111,7 +117,7 @@ jobs:
           download_filename: ${{ env.SDK_NAME }}
           mode: download
           download_latest: 'true'
-          location: ${{ inputs.sdk_s3_base_location }}
+          location: ${{ inputs.sdk_s3_base_location }}/${{ inputs.meta_audioreach_branch }}
 
       - name: Setup Directory Structure
         run: mkdir -p install/tmp

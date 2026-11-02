@@ -35,6 +35,12 @@ on:
         description: Optional base reference to use for building
         default: ${{ github.ref_name }}
 
+      meta_audioreach_branch:
+        required: false
+        type: string
+        description: meta-audioreach branch whose images to consume (published under post_merge_build/<branch>/)
+        default: master
+
 
       build_matrix:                 # <-- added (required for matrix below)
         required: true
@@ -101,7 +107,7 @@ jobs:
           download_latest: 'true'
           #qcom-multimedia-proprietary-image-rb3gen2-core-kit.rootfs.qcomflash.tar.gz
           download_filename: qcom-multimedia-proprietary-image-${{ env.IMAGE_NAME }}.rootfs.qcomflash.tar.gz
-          location: AudioReach/meta-audioreach/post_merge_build
+          location: AudioReach/meta-audioreach/post_merge_build/${{ inputs.meta_audioreach_branch }}
 
       - name: Extract image and mount
         id: extract_image
